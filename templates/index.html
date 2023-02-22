@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko" >
+<head>
+  <meta charset="UTF-8">
+  <title>크롤링 목록 조회</title>
+  <link href="{{url_for('static',path='/style.css')}}" rel="stylesheet">
+  <link href="https://unpkg.com/tabulator-tables@5.4.3/dist/css/tabulator_semanticui.min.css" rel="stylesheet">
+</head>
+<body>
+<section id="wrapper">
+   <div class="content">
+      <!-- Tab links -->
+      <div class="tabs">
+         <button class="tablinks active" data-country="amazon"><p data-title="amazon">아마존 크롤링 목록 조회</p></button>
+         <button class="tablinks" data-country="danawa"><p data-title="danawa">다나와 크롤링 목록 조회</p></button>
+      </div>
+
+      <!-- Tab content -->
+      <div class="wrapper_tabcontent">
+         <div id="amazon" class="tabcontent active">
+            <h3>아마존 크롤링 목록 조회</h3>
+            <form>
+               <button id="amz_crawl_btn" class="btn" type="button">크롤링 시작</button> 
+               <div id="amz_crawl_list"></div>
+            </form>
+         </div>
+
+         <div id="danawa" class="tabcontent">
+            <h3>다나와 크롤링 목록 조회</h3>
+            <form>
+               <button id="dnw_crawl_btn" class="btn" type="button">크롤링 시작</button> 
+               <div id="dnw_crawl_list"></div>
+            </form>
+         </div>
+
+        
+      </div>
+   </div>
+</section>
+<!-- js -->
+  <script  src="{{url_for('static',path='/js/script.js')}}"></script>
+  <script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
+  
+  <script>
+      var amz_list = {{amz_list|tojson}};
+      var amz_table = new Tabulator('#amz_crawl_list',{
+         data:amz_list,
+         pagination:"local",
+         paginationSize:10,
+         columns:[
+            {formatter:"rowSelection", titleFormatter:"rowSelection", hozAlign:"center", 
+            headerSort:false
+            },
+            {title:"level1", field:"level1", headerFilter:"input"},
+            {title:"level2", field:"level2", headerFilter:"input"},
+            {title:"level3", field:"level3", headerFilter:"input"},
+            {title:"level4", field:"level4", headerFilter:"input"},
+            {title:"url", field:"url", headerFilter:"input"}
+         ],
+         });
+      amz_table.on("rowClick", function(e, row){
+         window.location.href = '/search_model4_amz?url='+row._row.data.url;
+      });
+      const amz_crawl_btn = document.getElementById("amz_crawl_btn")
+
+      function click_amz_crawl_btn(e){
+         e.preventDefault()
+         var selectedData = amz_table.getSelectedData();
+
+         fetch('/amz_crawl', {
+         method: 'POST',
+         headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+         },
+         body: JSON.stringify({"selectedData":JSON.stringify(selectedData)}),
+         })
+         .then(res => res.json())
+         .then(data => console.log(data));
+      }
+
+      amz_crawl_btn.addEventListener("click",click_amz_crawl_btn)
+
+
+//========================================================================================
+
+
+      var dnw_list = {{dnw_list|tojson}};
+		var dnw_table = new Tabulator('#dnw_crawl_list',{
+         data:dnw_list,
+         pagination:"local",
+         paginationSize:10,
+         columns:[
+            {formatter:"rowSelection", titleFormatter:"rowSelection", hozAlign:"center", 
+            headerSort:false
+            },
+            {title:"level1", field:"level1", headerFilter:"input"},
+            {title:"level2", field:"level2", headerFilter:"input"},
+            {title:"level3", field:"level3", headerFilter:"input"},
+            {title:"level4", field:"level4", headerFilter:"input"},
+            {title:"url", field:"url", headerFilter:"input"},
+            {title:"pcategory", field:"pcategory", headerFilter:"input"}
+         ],
+         });
+      dnw_table.on("rowClick", function(e, row){
+         window.location.href = '/search_model4_dnw?pcategory='+row._row.data.pcategory;
+		});
+      const dnw_crawl_btn = document.getElementById("dnw_crawl_btn")
+
+      function click_dnw_crawl_btn(e){
+         e.preventDefault()
+         var selectedData = dnw_table.getSelectedData();
+
+         fetch('/dnw_crawl', {
+         method: 'POST',
+         headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+         },
+         body: JSON.stringify({"selectedData":JSON.stringify(selectedData)}),
+         })
+         .then(res => res.json())
+         .then(data => console.log(data));
+      }
+
+      dnw_crawl_btn.addEventListener("click",click_dnw_crawl_btn)
+  </script>
+</body>
+</html>

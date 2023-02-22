@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://unpkg.com/tabulator-tables@5.4.3/dist/css/tabulator.min.css" rel="stylesheet">
+	<link href="{{url_for('static',path='/style.css')}}" rel="stylesheet">\
+	<link href="https://unpkg.com/tabulator-tables@5.4.3/dist/css/tabulator_semanticui.min.css" rel="stylesheet">
+ 	<script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.4.3/dist/js/tabulator.min.js"></script>
+
+	<style>
+	table, th, td{
+		border : 1px solid black;
+		text-align : center;
+	}
+	.btn{
+		font-size : 1.2em;
+	}
+	</style>
+	<meta charset="UTF-8">
+	<title>Amazon DB List</title>
+</head>
+<body>
+	<div id="model4_data_amz"></div>
+	<script>
+		var aaa = {{inputList|tojson}};
+		var table = new Tabulator('#model4_data_amz',{
+		data:aaa,
+		pagination:"local",
+		paginationSize:20,
+		columns:[
+			{title:"url", field:"url"},
+			{title:"cluster_name", field:"cluster_name"},
+			{title:"product_key", field:"product_key"},
+			{title:"product_idx", field:"product_idx"},
+			{title:"level1", field:"level1"},
+			{title:"level2", field:"level2"},
+			{title:"level3", field:"level3"},
+			{title:"level4", field:"level4"},
+			{title:"product_name", field:"product_name"},
+			{title:"product_price", field:"product_price"},
+			// {title:"cluster", field:"cluster"},
+			{title:"price_range", field:"price_range"},
+			{title:"title1", field:"title1"},
+			{title:"rating1", field:"rating1"},
+			{title:"title2", field:"title2"},
+			{title:"rating2", field:"rating2"},
+			{title:"title3", field:"title3"},
+			{title:"rating3", field:"rating3"},
+			{title:"title4", field:"title4"},
+			{title:"rating4", field:"rating4"},
+			{title:"title5", field:"title5"},
+			{title:"rating5", field:"rating5"},
+			{title:"title6", field:"title6"},
+			{title:"rating6", field:"rating6"},
+			{title:"title7", field:"title7"},
+			{title:"rating7", field:"rating7"},
+			// {title:"title_list", field:"title_list"},
+			{title:"create_date", field:"create_date"},
+		],
+		});
+	</script>
+</body>
+</html>

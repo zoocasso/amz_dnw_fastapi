@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://unpkg.com/tabulator-tables@5.4.3/dist/css/tabulator.min.css" rel="stylesheet">
+	<link href="{{url_for('static',path='/style.css')}}" rel="stylesheet">
+	<link href="https://unpkg.com/tabulator-tables@5.4.3/dist/css/tabulator_semanticui.min.css" rel="stylesheet">
+ 	<script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.4.3/dist/js/tabulator.min.js"></script>
+
+	<style>
+	table, th, td{
+		border : 1px solid black;
+		text-align : center;
+	}
+	.btn{
+		font-size : 1.2em;
+	}
+	</style>
+	<meta charset="UTF-8">
+	<title>Amazon DB List</title>
+</head>
+<body>
+	<div id="model4_data_amz"></div>
+	<script>
+		var aaa = {{inputList|tojson}};
+		var table = new Tabulator('#model4_data_amz',{
+		data:aaa,
+		pagination:"local",
+		paginationSize:20,
+		columns:[
+			{title:"pcategory", field:"pcategory"},
+			{title:"cluster_name", field:"cluster_name"},
+			{title:"pcode", field:"pcode"},
+			{title:"product_idx", field:"product_idx"},
+			{title:"level1", field:"level1"},
+			{title:"level2", field:"level2"},
+			{title:"level3", field:"level3"},
+			{title:"level4", field:"level4"},
+			{title:"product_name", field:"product_name"},
+			{title:"product_price", field:"product_price"},
+			// {title:"cluster", field:"cluster"},
+			{title:"price_range", field:"price_range"},
+			{title:"title1", field:"title1"},
+			{title:"content1", field:"content1"},
+			{title:"title2", field:"title2"},
+			{title:"content2", field:"content2"},
+			{title:"title3", field:"title3"},
+			{title:"content3", field:"content3"},
+			{title:"title4", field:"title4"},
+			{title:"content4", field:"content4"},
+			{title:"title5", field:"title5"},
+			{title:"content5", field:"content5"},
+			{title:"title6", field:"title6"},
+			{title:"content6", field:"content6"},
+			{title:"title7", field:"title7"},
+			{title:"content7", field:"content7"},
+			{title:"needs_title_list", field:"needs_title_list"},
+			// {title:"title_list", field:"title_list"},
+			{title:"create_date", field:"create_date"},
+		],
+		});
+	</script>
+</body>
+</html>

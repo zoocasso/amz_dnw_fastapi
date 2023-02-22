@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://unpkg.com/tabulator-tables@5.4.3/dist/css/tabulator.min.css" rel="stylesheet">
+	<link href="{{url_for('static',path='/style.css')}}" rel="stylesheet">
+	<link href="https://unpkg.com/tabulator-tables@5.4.3/dist/css/tabulator_semanticui.min.css" rel="stylesheet">
+	<script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.4.3/dist/js/tabulator.min.js"></script>
+
+	<style>
+	table, th, td{
+		border : 1px solid black;
+		text-align : center;
+	}
+	.btn{
+		font-size : 1.2em;
+	}
+	</style>
+	<meta charset="UTF-8">
+	<title>Model4_Amazon</title>
+</head>
+<body>
+	<div id="model4_amz" ></div>
+	<script>
+		var aaa = {{inputList|tojson}};
+		var table = new Tabulator('#model4_amz',{
+		data:aaa,
+		columns:[
+			{title:"url", field:"url"},
+			{title:"cluster_name", field:"cluster_name"},
+			// {title:"cluster", field:"cluster"},
+			{title:"title1", field:"title1"},
+			{title:"content1", field:"content1"},
+			{title:"title2", field:"title2"},
+			{title:"content2", field:"content2"},
+			{title:"title3", field:"title3"},
+			{title:"content3", field:"content3"},
+			{title:"title4", field:"title4"},
+			{title:"content4", field:"content4"},
+			{title:"title5", field:"title5"},
+			{title:"content5", field:"content5"},
+			{title:"title6", field:"title6"},
+			{title:"content6", field:"content6"},
+			{title:"title7", field:"title7"},
+			{title:"price_range", field:"price_range"},
+			// {title:"title_list", field:"title_list"},
+			{title:"create_date", field:"create_date"},
+		],
+		});
+		table.on("rowClick", function(e, row){
+			window.location.href = '/search_model4_data_amz?url='+row._row.data.url+'&&cluster='+row._row.data.cluster;
+		});
+	</script>
+</body>
+</html>
