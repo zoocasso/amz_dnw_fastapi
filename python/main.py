@@ -27,7 +27,7 @@ class Item(BaseModel):
 @app.post("/amz_crawl")
 async def create_item(item: Item):
     row_list = json.loads(item.selectedData)
-    
+    print(item)
     for i in row_list:
         print(i['url'])
         
@@ -105,4 +105,4 @@ async def crawl_dnw(request:Request, pcategory:str):
     dnw_modelling.modelling().model_dnw(pcategory)
     return templates.TemplateResponse("home.html", {"request":request})
 
-uvicorn.run(app, host = '127.0.0.1', port = 8000)
+uvicorn.run(app, host = '127.0.0.1', port = 8001)

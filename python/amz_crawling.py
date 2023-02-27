@@ -10,7 +10,7 @@ import re
 mydb = MySQLdb.connect(
     user="root",
     passwd="vision9551",
-    host="172.30.1.51",
+    host="139.150.82.178",
     db="kisti_crawl",
 )
 # 커서 생성

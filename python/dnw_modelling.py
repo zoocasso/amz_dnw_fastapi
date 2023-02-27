@@ -12,7 +12,7 @@ Separator = "$$"
 separator = " ~ "
 
 # dataframe에서 db로 저장
-db_address = 'mysql+pymysql://root:vision9551@172.30.1.51/kisti_crawl'
+db_address = 'mysql+pymysql://root:vision9551@139.150.82.178/kisti_crawl'
 db_conn = create_engine(db_address)
 conn = db_conn.connect()
 price_range_list = list()
