@@ -1,6 +1,6 @@
 ## vision_kisti_fastapi
 
-###fastapi를 활용한 크롤링&모델링 데이터 관리 사이트
+### fastapi를 활용한 크롤링&모델링 데이터 관리 사이트
 (크롤링 : 아마존/다나와 사이트 크롤링)
 (모델링 : Kmeans를 활용한 가격별 cluster)
 
