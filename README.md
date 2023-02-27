@@ -1,4 +1,8 @@
-# crawlling_list_fastapi
-vision_kisti_fastapi
+# vision_kisti_fastapi
 
-js - python(fastapi) - mysql
+# crawlling_list_fastapi
+크롤링한 사이트 = ['amazon', 'danawa']
+
+! frontend : js
+! backend : python(fastapi)
+! database : mysql
