@@ -2,12 +2,12 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from bs4 import BeautifulSoup
 from datetime import datetime
-import MySQLdb
+import pymysql
 import time
 import os
 import re
 
-mydb = MySQLdb.connect(
+mydb = pymysql.connect(
     user="root",
     passwd="vision9551",
     host="139.150.82.178",
@@ -402,6 +402,3 @@ class crawling:
                 error_list.append(url)
         print(error_list)
         driver.close()
-
-# if __name__ == '__main__':
-#     crawling().crawl_amz("https://www.amazon.com/Best-Sellers-Appliances-Cooktops/zgbs/appliances/3741261/ref=zg_bs_nav_appliances_1")

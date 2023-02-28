@@ -1,8 +1,8 @@
 from operator import itemgetter
 import pandas as pd
-import MySQLdb
+import pymysql
 
-mydb = MySQLdb.connect(
+mydb = pymysql.connect(
     user="root",
     passwd="vision9551",
     host="139.150.82.178",

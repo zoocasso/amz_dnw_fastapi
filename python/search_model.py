@@ -85,7 +85,3 @@ class model4:
         db.commit()
         db.close()
         return rows
-    
-# if __name__ == '__main__':
-#     emplist = model4().search_amz('https://www.amazon.com/Best-Sellers-Appliances-Cooktops/zgbs/appliances/3741261/ref=zg_bs_nav_appliances_1');
-#     print(emplist)

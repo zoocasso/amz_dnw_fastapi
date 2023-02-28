@@ -3,14 +3,14 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 from datetime import datetime
-import MySQLdb
+import pymysql
 import time
 import json
 import os
 import re
 import math
 
-mydb = MySQLdb.connect(
+mydb = pymysql.connect(
     user="root",
     passwd="vision9551",
     host="139.150.82.178",

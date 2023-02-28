@@ -105,4 +105,4 @@ async def crawl_dnw(request:Request, pcategory:str):
     dnw_modelling.modelling().model_dnw(pcategory)
     return templates.TemplateResponse("home.html", {"request":request})
 
-uvicorn.run(app, host = '127.0.0.1', port = 8001)
+uvicorn.run(app, host = '0.0.0.0', port = 8000)
