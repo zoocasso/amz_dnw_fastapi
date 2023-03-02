@@ -15,7 +15,7 @@ import json
 app = FastAPI()
 
 ## static 폴더 mounting작업
-app.mount("/static",StaticFiles(directory=Path(__file__).parent.parent.absolute() / "static"),name="static",)
+app.mount("/static",StaticFiles(directory=Path(__file__).parent.parent.absolute() / "static"),name="static")
 
 ## 템플릿 구성을 위해 Jinja2 활용
 templates = Jinja2Templates(directory="templates")
@@ -105,4 +105,4 @@ async def crawl_dnw(request:Request, pcategory:str):
     dnw_modelling.modelling().model_dnw(pcategory)
     return templates.TemplateResponse("home.html", {"request":request})
 
-uvicorn.run(app, host = '0.0.0.0', port = 8000)
+uvicorn.run(app, host = '0.0.0.0', port = 8001)
