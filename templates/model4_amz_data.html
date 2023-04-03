@@ -2,7 +2,7 @@
 <html>
 <head>
 	<link href="https://unpkg.com/tabulator-tables@5.4.3/dist/css/tabulator.min.css" rel="stylesheet">
-	<link href="{{url_for('static',path='/style.css')}}" rel="stylesheet">
+	<link href="{{url_for('static',path='/style.css')}}" rel="stylesheet">\
 	<link href="https://unpkg.com/tabulator-tables@5.4.3/dist/css/tabulator_semanticui.min.css" rel="stylesheet">
  	<script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.4.3/dist/js/tabulator.min.js"></script>
 
@@ -16,20 +16,20 @@
 	}
 	</style>
 	<meta charset="UTF-8">
-	<title>Amazon DB List</title>
+	<title>Model4_Amazon</title>
 </head>
 <body>
 	<div id="model4_data_amz"></div>
 	<script>
-		var aaa = {{inputList|tojson}};
+		var aaa = {{input_list|tojson}};
 		var table = new Tabulator('#model4_data_amz',{
 		data:aaa,
 		pagination:"local",
 		paginationSize:20,
 		columns:[
-			{title:"pcategory", field:"pcategory"},
+			{title:"url", field:"url"},
 			{title:"cluster_name", field:"cluster_name"},
-			{title:"pcode", field:"pcode"},
+			{title:"product_key", field:"product_key"},
 			{title:"product_idx", field:"product_idx"},
 			{title:"level1", field:"level1"},
 			{title:"level2", field:"level2"},
@@ -40,20 +40,19 @@
 			// {title:"cluster", field:"cluster"},
 			{title:"price_range", field:"price_range"},
 			{title:"title1", field:"title1"},
-			{title:"content1", field:"content1"},
+			{title:"rating1", field:"rating1"},
 			{title:"title2", field:"title2"},
-			{title:"content2", field:"content2"},
+			{title:"rating2", field:"rating2"},
 			{title:"title3", field:"title3"},
-			{title:"content3", field:"content3"},
+			{title:"rating3", field:"rating3"},
 			{title:"title4", field:"title4"},
-			{title:"content4", field:"content4"},
+			{title:"rating4", field:"rating4"},
 			{title:"title5", field:"title5"},
-			{title:"content5", field:"content5"},
+			{title:"rating5", field:"rating5"},
 			{title:"title6", field:"title6"},
-			{title:"content6", field:"content6"},
+			{title:"rating6", field:"rating6"},
 			{title:"title7", field:"title7"},
-			{title:"content7", field:"content7"},
-			{title:"needs_title_list", field:"needs_title_list"},
+			{title:"rating7", field:"rating7"},
 			// {title:"title_list", field:"title_list"},
 			{title:"create_date", field:"create_date"},
 		],

@@ -1,19 +1,20 @@
+import config
+
 from operator import itemgetter
 import pandas as pd
 import pymysql
 
-mydb = pymysql.connect(
-    user="root",
-    passwd="vision9551",
-    host="139.150.82.178",
-    db="kisti_crawl",
-)
-cursor_1 = mydb.cursor()
+mydb = pymysql.connect(host=config.DATABASE_CONFIG['host'],
+                       user=config.DATABASE_CONFIG['user'],
+                       password=config.DATABASE_CONFIG['password'],
+                       database=config.DATABASE_CONFIG['dbname'],
+                       cursorclass=pymysql.cursors.DictCursor)
+cursor = mydb.cursor()
 
 ### table을 dataframe으로 바꾸는 함수
 def get_db_table_url(tablename,url):
-    cursor_1.execute(f"""select * from {tablename} where url like '{url}'""")
-    tb = cursor_1.fetchall()
+    cursor.execute(f"""select * from {tablename} where url = '{url}' and create_date = (select max(create_date) from {tablename} where url = '{url}' group by url)""")
+    tb = cursor.fetchall()
     return tb
 
 def amz_product_info_dataframe(url):

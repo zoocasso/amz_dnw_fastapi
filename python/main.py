@@ -20,32 +20,38 @@ app.mount("/static",StaticFiles(directory=Path(__file__).parent.parent.absolute(
 ## 템플릿 구성을 위해 Jinja2 활용
 templates = Jinja2Templates(directory="templates")
 
-
-class Item(BaseModel):
+class row_basemodel(BaseModel):
   selectedData: str
 
+class keyword_basemodel(BaseModel):
+  keyword: str
+
+@app.post("/amz_keyword")
+async def create_item(keyword_basemodel:keyword_basemodel):
+    amz_crawl_list = search_model.search_amz_keyword(keyword_basemodel.keyword)
+    return amz_crawl_list
+
+@app.post("/dnw_keyword")
+async def create_item(keyword_basemodel:keyword_basemodel):
+    dnw_crawl_list = search_model.search_dnw_keyword(keyword_basemodel.keyword)
+    return dnw_crawl_list
+
 @app.post("/amz_crawl")
-async def create_item(item: Item):
-    row_list = json.loads(item.selectedData)
-    print(item)
-    for i in row_list:
-        print(i['url'])
-        
+async def create_item(row_basemodel: row_basemodel):
+    row_list = json.loads(row_basemodel.selectedData)
     for row in row_list:
+        print(row['url'])
         amz_crawling.crawling().crawl_amz(row['url'])
         amz_modelling.modelling().model_amz(row['url'])
     return "아마존 크롤링 완료"
 
 @app.post("/dnw_crawl")
-async def create_item(item: Item):
-    row_list = json.loads(item.selectedData)
-
-    for i in row_list:
-        print(i['url'])
-
+async def create_item(row_basemodel: row_basemodel):
+    row_list = json.loads(row_basemodel.selectedData)
     for row in row_list:
-        dnw_crawling.crawling().crawl_dnw(row['url'])
-        dnw_modelling.modelling().model_dnw(row['url'])
+        print(row['pcategory'])
+        dnw_crawling.crawling().crawl_dnw(row['pcategory'])
+        dnw_modelling.modelling().model_dnw(row['pcategory'])
     return "다나와 크롤링 완료"
 
 ## 메인페이지
@@ -53,56 +59,31 @@ async def create_item(item: Item):
 async def root(request:Request):
     amz_crawl_list = search_model.search_amz_crawl_list()
     dnw_crawl_list = search_model.search_dnw_crawl_list()
-    return templates.TemplateResponse("index.html", {"request":request, "amz_list":amz_crawl_list, "dnw_list":dnw_crawl_list})
+    return templates.TemplateResponse("index.html", {"request":request, "amz_crawl_list":amz_crawl_list, "dnw_crawl_list":dnw_crawl_list})
 
-@app.get('/amz_crawl_list')
-async def amz_crawl_list(request:Request):
-    amz_crawl_list = search_model.search_amz_crawl_list()
-    return templates.TemplateResponse("amz_crawl_list.html", {"request":request, "inputList":amz_crawl_list})
+@app.get("/amz_keyword")
+async def amz_keyword(request:Request, keyword:str):
+    
+    return templates.TemplateResponse("model4_amz.html", {"request":request, "keyword":keyword})
 
-@app.get('/dnw_crawl_list')
-async def dnw_crawl_list(request:Request):
-    dnw_crawl_list = search_model.search_dnw_crawl_list()
-    return templates.TemplateResponse("dnw_crawl_list.html", {"request":request, "inputList":dnw_crawl_list})
-
-@app.get("/search")
-async def search(request:Request):
-    return templates.TemplateResponse("searching.html", {"request":request})
-
-@app.get('/search_model4_amz')
-async def search_amz(request:Request, url:str):
+@app.get('/model4_amz')
+async def model4_amz(request:Request, url:str):
     amz_list = search_model.model4().search_amz(url)
-    return templates.TemplateResponse("search_model4_amz.html", {"request":request, "inputList":amz_list})
+    return templates.TemplateResponse("model4_amz.html", {"request":request, "input_list":amz_list})
 
-@app.get('/search_model4_dnw')
-async def search_dnw(request:Request, pcategory:str):
+@app.get('/model4_dnw')
+async def model4_dnw(request:Request, pcategory:str):
     dnw_list = search_model.model4().search_dnw(pcategory)
-    return templates.TemplateResponse("search_model4_dnw.html", {"request":request, "inputList":dnw_list})
+    return templates.TemplateResponse("model4_dnw.html", {"request":request, "input_list":dnw_list})
 
-@app.get('/search_model4_data_amz')
-async def search_model4_data_amz(request:Request, url:str, cluster:str):
+@app.get('/model4_amz_data')
+async def model4_amz_data(request:Request, url:str, cluster:str):
     amz_data_list = search_model.model4().search_amz_data(url,cluster)
-    return templates.TemplateResponse('search_model4_data_amz.html', {"request":request, "inputList":amz_data_list})
+    return templates.TemplateResponse('model4_amz_data.html', {"request":request, "input_list":amz_data_list})
 
-@app.get('/search_model4_data_dnw')
-def search_model4_data_dnw(request:Request, pcategory:str, cluster:str):
+@app.get('/model4_dnw_data')
+def model4_dnw_data(request:Request, pcategory:str, cluster:str):
     dnw_data_list = search_model.model4().search_dnw_data(pcategory,cluster)
-    return templates.TemplateResponse('search_model4_data_dnw.html', {"request":request, "inputList":dnw_data_list})
+    return templates.TemplateResponse('model4_dnw_data.html', {"request":request, "input_list":dnw_data_list})
 
-@app.get("/crawling")
-async def crawling(request:Request):
-    return templates.TemplateResponse("crawling.html", {"request":request})
-
-@app.get("/crawl_amz")
-async def crawl_amz(request:Request, url:str):
-    amz_crawling.crawling().crawl_amz(url)
-    amz_modelling.modelling().model_amz(url)
-    return templates.TemplateResponse("home.html", {"request":request})
-
-@app.get("/crawl_dnw")
-async def crawl_dnw(request:Request, pcategory:str):
-    dnw_crawling.crawling().crawl_dnw(pcategory)
-    dnw_modelling.modelling().model_dnw(pcategory)
-    return templates.TemplateResponse("home.html", {"request":request})
-
-uvicorn.run(app, host = '0.0.0.0', port = 8001)
+uvicorn.run(app, host = '127.0.0.1', port = 8000)

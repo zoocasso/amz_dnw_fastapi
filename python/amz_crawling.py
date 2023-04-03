@@ -1,3 +1,5 @@
+import config
+
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from bs4 import BeautifulSoup
@@ -7,12 +9,11 @@ import time
 import os
 import re
 
-mydb = pymysql.connect(
-    user="root",
-    passwd="vision9551",
-    host="139.150.82.178",
-    db="kisti_crawl",
-)
+mydb = pymysql.connect(host=config.DATABASE_CONFIG['host'],
+                       user=config.DATABASE_CONFIG['user'],
+                       password=config.DATABASE_CONFIG['password'],
+                       database=config.DATABASE_CONFIG['dbname'],
+                       cursorclass=pymysql.cursors.DictCursor)
 # 커서 생성
 cursor = mydb.cursor()
 
@@ -334,9 +335,7 @@ class crawling:
         pass
     def crawl_amz(self,url):
         options = Options()
-        # options.add_argument("download.default_directory=C:\\Music")
         driver = webdriver.Firefox(options=options,executable_path=".\geckodriver.exe")
-        driver.set_window_size(1920, 1080) 
 
         # ziasin_code (Selenium)
         URL_ADDRESS = "https://www.amazon.com/"

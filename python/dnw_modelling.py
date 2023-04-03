@@ -162,7 +162,6 @@ class modelling:
         pass
     
     def model_dnw(self, pcategory):
-        print("hi")
         try:
             #product_info db불러오기 (df형태)
             product_info = dnw_load_db_data.dnw_product_info_dataframe(pcategory)

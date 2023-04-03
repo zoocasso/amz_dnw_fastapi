@@ -1,3 +1,5 @@
+import config
+
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
@@ -10,12 +12,11 @@ import os
 import re
 import math
 
-mydb = pymysql.connect(
-    user="root",
-    passwd="vision9551",
-    host="139.150.82.178",
-    db="kisti_crawl",
-)
+mydb = pymysql.connect(host=config.DATABASE_CONFIG['host'],
+                       user=config.DATABASE_CONFIG['user'],
+                       password=config.DATABASE_CONFIG['password'],
+                       database=config.DATABASE_CONFIG['dbname'],
+                       cursorclass=pymysql.cursors.DictCursor)
 
 # 커서 생성
 cursor = mydb.cursor()
@@ -328,9 +329,7 @@ class crawling:
         review = list()
 
         options = Options()
-        options.binary_location = r'C:/Program Files/Mozilla Firefox/firefox.exe'
         driver = webdriver.Firefox(options=options,executable_path=".\geckodriver.exe")
-        driver.set_window_size(1920, 1080) 
 
         URL_ADDRESS = "https://prod.danawa.com/"
         URL_PREFIX = "list/?cate="
@@ -348,11 +347,11 @@ class crawling:
 
         while(True):
             time.sleep(2)
-            try:
-                    driver.find_element(By.CSS_SELECTOR,"li[data-view-method='LIST'] a").click()
-            except:
-                print(f'error{pcategory}')
-                break
+            # try:
+            driver.find_element(By.CSS_SELECTOR,"li[data-view-method='LIST'] a").click()
+            # except:
+            #     print(f'error{pcategory}')
+            #     break
             time.sleep(2)
             # Selenium && BeautifulSoup
             page_source = driver.page_source

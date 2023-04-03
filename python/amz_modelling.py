@@ -1,3 +1,5 @@
+import config
+
 import amz_load_db_data
 from amz_load_db_data import maketable
 from sklearn.cluster import KMeans
@@ -9,7 +11,7 @@ import numpy as np
 separator = " ~ "
 
 # dataframe에서 db로 저장
-db_address = 'mysql+pymysql://root:vision9551@139.150.82.178/kisti_crawl'
+db_address = f"mysql+pymysql://{config.DATABASE_CONFIG['user']}:{config.DATABASE_CONFIG['password']}@{config.DATABASE_CONFIG['host']}/{config.DATABASE_CONFIG['dbname']}"
 db_conn = create_engine(db_address)
 conn = db_conn.connect()
 

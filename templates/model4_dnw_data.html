@@ -19,15 +19,26 @@
 	<title>Model4_Danawa</title>
 </head>
 <body>
-	<div id="model4_dnw"></div>
+	<div id="model4_data_amz"></div>
 	<script>
-		var aaa = {{inputList|tojson}};
-		var table = new Tabulator('#model4_dnw',{
+		var aaa = {{input_list|tojson}};
+		var table = new Tabulator('#model4_data_amz',{
 		data:aaa,
+		pagination:"local",
+		paginationSize:20,
 		columns:[
 			{title:"pcategory", field:"pcategory"},
 			{title:"cluster_name", field:"cluster_name"},
+			{title:"pcode", field:"pcode"},
+			{title:"product_idx", field:"product_idx"},
+			{title:"level1", field:"level1"},
+			{title:"level2", field:"level2"},
+			{title:"level3", field:"level3"},
+			{title:"level4", field:"level4"},
+			{title:"product_name", field:"product_name"},
+			{title:"product_price", field:"product_price"},
 			// {title:"cluster", field:"cluster"},
+			{title:"price_range", field:"price_range"},
 			{title:"title1", field:"title1"},
 			{title:"content1", field:"content1"},
 			{title:"title2", field:"title2"},
@@ -42,14 +53,10 @@
 			{title:"content6", field:"content6"},
 			{title:"title7", field:"title7"},
 			{title:"content7", field:"content7"},
-			{title:"needs", field:"needs"},
-			{title:"price_range", field:"price_range"},
+			{title:"needs_title_list", field:"needs_title_list"},
 			// {title:"title_list", field:"title_list"},
 			{title:"create_date", field:"create_date"},
 		],
-		});
-		table.on("rowClick", function(e, row){
-			window.location.href = '/search_model4_data_dnw?pcategory='+row._row.data.pcategory+'&&cluster='+row._row.data.cluster;
 		});
 	</script>
 </body>
