@@ -19,8 +19,8 @@ def get_db_table_pcategory(tablename,pcategory):
     
 def dnw_product_info_dataframe(pcategory):
     dnw_product_info_tb = get_db_table_pcategory("dnw_product_info",pcategory)
-    dnw_product_info_df = pd.DataFrame(dnw_product_info_tb,columns =["idx","pcategory","pcode","product_idx","create_date","level1","level2","level3","level4","level5","product_name","product_price","launch_date","brand_name","review_score","review_number","5star","4star","3star","2star","1star"])
-    dnw_product_info_df = dnw_product_info_df.loc[:,["pcategory","product_idx","pcode","level1","level2","level3","level4","product_name","product_price"]]
+    dnw_product_info_df = pd.DataFrame(dnw_product_info_tb,columns =["idx","pcategory","pcode","product_idx","create_date","product_name","product_price","launch_date","brand_name","review_score","review_number","5star","4star","3star","2star","1star"])
+    dnw_product_info_df = dnw_product_info_df.loc[:,["pcategory","product_idx","pcode","product_name","product_price"]]
     return dnw_product_info_df
 
 def dnw_product_detail_dataframe(pcategory):

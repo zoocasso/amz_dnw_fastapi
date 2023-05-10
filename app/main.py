@@ -61,10 +61,9 @@ async def root(request:Request):
     dnw_crawl_list = search_model.search_dnw_crawl_list()
     return templates.TemplateResponse("index.html", {"request":request, "amz_crawl_list":amz_crawl_list, "dnw_crawl_list":dnw_crawl_list})
 
-@app.get("/amz_keyword")
-async def amz_keyword(request:Request, keyword:str):
-    
-    return templates.TemplateResponse("model4_amz.html", {"request":request, "keyword":keyword})
+# @app.get("/amz_keyword")
+# async def amz_keyword(request:Request, keyword:str):
+#     return templates.TemplateResponse("model4_amz.html", {"request":request, "keyword":keyword})
 
 @app.get('/model4_amz')
 async def model4_amz(request:Request, url:str):

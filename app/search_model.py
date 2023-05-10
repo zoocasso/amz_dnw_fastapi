@@ -28,7 +28,7 @@ def search_dnw_crawl_list():
                        cursorclass=pymysql.cursors.DictCursor)
     cursor = mydb.cursor()
 
-    sql = "select level1,level2,level3,level4,url,pcategory from dnw_category"
+    sql = "select level1,level2,level3,level4,pcategory from dnw_category"
 
     cursor.execute(sql)
 
