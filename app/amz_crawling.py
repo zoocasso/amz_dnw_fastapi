@@ -193,6 +193,7 @@ def getAttrRatingStar(feature_rating, soup):
         attrRatingScore = attrRatingList.select_one("span.a-size-base.a-color-tertiary").get_text().strip()
         feature_rating[attrRatingTitle] = float(attrRatingScore)
 
+# ReviewKeyword
 def getReviewKeyword(review_keyword, soup):
     reviewKeywords = soup.select_one("div#cr-lighthut-1-")
     reviewKeyword_html = reviewKeywords.select("span.cr-lighthouse-term")
@@ -201,7 +202,8 @@ def getReviewKeyword(review_keyword, soup):
         reviewKeyword = reviewKeyword_str.get_text().strip()
         review_keyword[f"ReviewKeyword_{index}"] = reviewKeyword
         index += 1
-        
+
+# DetailList  
 def getDetailList(product_detail, soup):
     detailListSource = soup.select("div#detailBullets_feature_div span.a-list-item span")
     detailTableDict_key_list = list()
@@ -214,6 +216,7 @@ def getDetailList(product_detail, soup):
     for key, value in zip(detailTableDict_key_list, detailTableDict_value_list):
         product_detail[key]=value
 
+# DetailTable
 def getDetailTable(product_detail, soup):
     detailTableSource = soup.select("div.a-row.a-spacing-top-base div.a-column.a-span6 table tbody tr")
     for index in detailTableSource:
