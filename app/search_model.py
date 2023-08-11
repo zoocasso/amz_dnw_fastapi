@@ -10,7 +10,7 @@ def search_amz_crawl_list():
                        cursorclass=pymysql.cursors.DictCursor)
     cursor = mydb.cursor()
 
-    sql = "select level1,level2,level3,level4,url from amz_category"
+    sql = "select level1,level2,level3,level4,url from amz_category;"
 
     cursor.execute(sql)
 
@@ -28,7 +28,7 @@ def search_dnw_crawl_list():
                        cursorclass=pymysql.cursors.DictCursor)
     cursor = mydb.cursor()
 
-    sql = "select level1,level2,level3,level4,pcategory from dnw_category"
+    sql = "select level1,level2,level3,level4,pcategory from dnw_category;"
 
     cursor.execute(sql)
 
@@ -46,7 +46,7 @@ def search_amz_keyword(keyword):
                        cursorclass=pymysql.cursors.DictCursor)
     cursor = mydb.cursor()
 
-    sql = f"select level1,level2,level3,level4,url from amz_category where level1 like '%{keyword}%' OR LEVEL2 LIKE '%{keyword}%' OR LEVEL3 LIKE '%{keyword}%' OR LEVEL4 LIKE '%{keyword}%'"
+    sql = f"select level1,level2,level3,level4,url from amz_category where level1 like '%{keyword}%' OR LEVEL2 LIKE '%{keyword}%' OR LEVEL3 LIKE '%{keyword}%' OR LEVEL4 LIKE '%{keyword}%';"
     cursor.execute(sql)
 
     rows = cursor.fetchall()
@@ -64,7 +64,7 @@ def search_dnw_keyword(keyword):
                        cursorclass=pymysql.cursors.DictCursor)
     cursor = mydb.cursor()
 
-    sql = f"select level1,level2,level3,level4,url,pcategory from dnw_category where level1 like '%{keyword}%' OR LEVEL2 LIKE '%{keyword}%' OR LEVEL3 LIKE '%{keyword}%' OR LEVEL4 LIKE '%{keyword}%'"
+    sql = f"select level1,level2,level3,level4,url,pcategory from dnw_category where level1 like '%{keyword}%' OR LEVEL2 LIKE '%{keyword}%' OR LEVEL3 LIKE '%{keyword}%' OR LEVEL4 LIKE '%{keyword}%';"
     cursor.execute(sql)
 
     rows = cursor.fetchall()
@@ -85,7 +85,7 @@ class model4:
                        cursorclass=pymysql.cursors.DictCursor)
         cursor = mydb.cursor()
 
-        sql = f"select * from amz_model4_data where url = '{url}' and cluster = '{cluster}'"
+        sql = f"select * from amz_model4_data where url = '{url}' and cluster = '{cluster}';"
 
         cursor.execute(sql)
 
@@ -103,7 +103,7 @@ class model4:
                        cursorclass=pymysql.cursors.DictCursor)
         cursor = mydb.cursor()
 
-        sql = f"select *from dnw_model4_data where pcategory = {pcategory} and cluster = '{cluster}'"
+        sql = f"select *from dnw_model4_data where pcategory = {pcategory} and cluster = '{cluster}';"
 
         cursor.execute(sql)
 
@@ -121,7 +121,7 @@ class model4:
                        cursorclass=pymysql.cursors.DictCursor)
         cursor = mydb.cursor()
 
-        sql = f"select * from amz_model4 where url = '{url}'";
+        sql = f"select * from amz_model4 where url = '{url}';"
         cursor.execute(sql)
 
         rows = cursor.fetchall()
@@ -138,7 +138,7 @@ class model4:
                        cursorclass=pymysql.cursors.DictCursor)
         cursor = mydb.cursor()
 
-        sql = f"select * from dnw_model4 where pcategory like '{pcategory}'";
+        sql = f"select * from dnw_model4 where pcategory like '{pcategory}';"
         cursor.execute(sql)
 
         rows = cursor.fetchall()

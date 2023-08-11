@@ -1,1 +1,2 @@
-zoo_venv
+*venv*
+config.py
