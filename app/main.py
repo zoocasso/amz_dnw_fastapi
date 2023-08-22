@@ -1,3 +1,6 @@
+import sys
+sys.path.append("./")
+
 import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
