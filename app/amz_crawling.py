@@ -32,7 +32,7 @@ def checkDictValue_int(dict,key):
         return dict[key]
 
 def insert_db(url,asin,product_order,product_info,product_detail,product_feature,feature_rating,review_keyword,body_content):
-    cursor.execute(f"select * from amz_category where url like '{url}'")
+    cursor.execute(f"select * from TB_AMZ_CATEGORY where url like '{url}'")
     rows = cursor.fetchall()
     level_list = list()
     for row in rows:

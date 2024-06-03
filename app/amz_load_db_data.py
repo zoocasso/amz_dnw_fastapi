@@ -18,13 +18,13 @@ def get_db_table_url(tablename,url):
     return tb
 
 def amz_product_info_dataframe(url):
-    amz_product_info_tb = get_db_table_url("amz_product_info",url)
+    amz_product_info_tb = get_db_table_url("TB_AMZ_PRODUCT_INFO",url)
     amz_product_info_df = pd.DataFrame(amz_product_info_tb,columns =["idx","url","product_key",'product_idx',"create_date","product_name","product_price","review_score","review_number","5star","4star","3star","2star","1star"])
     amz_product_info_df = amz_product_info_df.loc[:,['url',"product_key",'product_idx',"create_date","product_name","product_price"]]
     return amz_product_info_df
 
 def amz_feature_rating_dataframe(url):
-    dnw_product_detail_tb = get_db_table_url("amz_feature_rating",url)
+    dnw_product_detail_tb = get_db_table_url("TB_AMZ_FEATURE_RATING",url)
     dnw_product_detail_df = pd.DataFrame(dnw_product_detail_tb,columns =["idx","url","product_key","product_idx","create_date","feature_title","feature_rating"])
     dnw_product_detail_df = dnw_product_detail_df.loc[:,["product_key","product_idx","create_date","feature_title","feature_rating"]]
     return dnw_product_detail_df
