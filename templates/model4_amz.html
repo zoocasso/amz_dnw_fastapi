@@ -25,28 +25,28 @@
 		var table = new Tabulator('#model4_amz',{
 		data:aaa,
 		columns:[
-			{title:"url", field:"url"},
-			{title:"cluster_name", field:"cluster_name"},
-			{title:"title1", field:"title1"},
-			{title:"rating1", field:"rating1"},
-			{title:"title2", field:"title2"},
-			{title:"rating2", field:"rating2"},
-			{title:"title3", field:"title3"},
-			{title:"rating3", field:"rating3"},
-			{title:"title4", field:"title4"},
-			{title:"rating4", field:"rating4"},
-			{title:"title5", field:"title5"},
-			{title:"rating5", field:"rating5"},
-			{title:"title6", field:"title6"},
-			{title:"rating6", field:"rating6"},
-			{title:"title7", field:"title7"},
-			{title:"rating7", field:"rating7"},
-			{title:"price_range", field:"price_range"},
-			{title:"create_date", field:"create_date"},
+			{title:"URL", field:"URL"},
+			{title:"CLUSTER_NAME", field:"CLUSTER_NAME"},
+			{title:"TITLE1", field:"TITLE1"},
+			{title:"RATING1", field:"RATING1"},
+			{title:"TITLE2", field:"TITLE2"},
+			{title:"RATING2", field:"RATING2"},
+			{title:"TITLE3", field:"TITLE3"},
+			{title:"RATING3", field:"RATING3"},
+			{title:"TITLE4", field:"TITLE4"},
+			{title:"RATING4", field:"RATING4"},
+			{title:"TITLE5", field:"TITLE5"},
+			{title:"RATING5", field:"RATING5"},
+			{title:"TITLE6", field:"TITLE6"},
+			{title:"RATING6", field:"RATING6"},
+			{title:"TITLE7", field:"TITLE7"},
+			{title:"RATING7", field:"RATING7"},
+			{title:"PRICE_RANGE", field:"PRICE_RANGE"},
+			{title:"CREATE_DATE", field:"CREATE_DATE"},
 		],
 		});
 		table.on("rowClick", function(e, row){
-			window.location.href = '/model4_amz_data?url='+row._row.data.url+'&&cluster='+row._row.data.cluster;
+			window.location.href = '/model4_amz_data?url='+row._row.data.URL+'&&cluster='+row._row.data.CLUSTER;
 		});
 	</script>
 </body>

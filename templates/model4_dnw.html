@@ -25,31 +25,31 @@
 		var table = new Tabulator('#model4_dnw',{
 		data:aaa,
 		columns:[
-			{title:"pcategory", field:"pcategory"},
-			{title:"cluster_name", field:"cluster_name"},
-			// {title:"cluster", field:"cluster"},
-			{title:"title1", field:"title1"},
-			{title:"content1", field:"content1"},
-			{title:"title2", field:"title2"},
-			{title:"content2", field:"content2"},
-			{title:"title3", field:"title3"},
-			{title:"content3", field:"content3"},
-			{title:"title4", field:"title4"},
-			{title:"content4", field:"content4"},
-			{title:"title5", field:"title5"},
-			{title:"content5", field:"content5"},
-			{title:"title6", field:"title6"},
-			{title:"content6", field:"content6"},
-			{title:"title7", field:"title7"},
-			{title:"content7", field:"content7"},
-			{title:"needs", field:"needs"},
-			{title:"price_range", field:"price_range"},
-			// {title:"title_list", field:"title_list"},
-			{title:"create_date", field:"create_date"},
+			{title:"PCATEGORY", field:"PCATEGORY"},
+			{title:"CLUSTER_NAME", field:"CLUSTER_NAME"},
+			// {title:"CLUSTER", field:"CLUSTER"},
+			{title:"TITLE1", field:"TITLE1"},
+			{title:"CONTENT1", field:"CONTENT1"},
+			{title:"TITLE2", field:"TITLE2"},
+			{title:"CONTENT2", field:"CONTENT2"},
+			{title:"TITLE3", field:"TITLE3"},
+			{title:"CONTENT3", field:"CONTENT3"},
+			{title:"TITLE4", field:"TITLE4"},
+			{title:"CONTENT4", field:"CONTENT4"},
+			{title:"TITLE5", field:"TITLE5"},
+			{title:"CONTENT5", field:"CONTENT5"},
+			{title:"TITLE6", field:"TITLE6"},
+			{title:"CONTENT6", field:"CONTENT6"},
+			{title:"TITLE7", field:"TITLE7"},
+			{title:"CONTENT7", field:"CONTENT7"},
+			{title:"NEEDS", field:"NEEDS"},
+			{title:"PRICE_RANGE", field:"PRICE_RANGE"},
+			// {title:"TITLE_LIST", field:"TITLE_LIST"},
+			{title:"CREATE_DATE", field:"CREATE_DATE"},
 		],
 		});
 		table.on("rowClick", function(e, row){
-			window.location.href = '/model4_dnw_data?pcategory='+row._row.data.pcategory+'&&cluster='+row._row.data.cluster;
+			window.location.href = '/model4_dnw_data?pcategory='+row._row.data.PCATEGORY+'&&cluster='+row._row.data.CLUSTER;
 		});
 	</script>
 </body>
