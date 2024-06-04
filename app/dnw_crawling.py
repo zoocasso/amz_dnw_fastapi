@@ -43,11 +43,6 @@ def insert_db(product_info,product_spectable,review_keyword):
     product_info_dict["pcode"] = checkDictValue_str(product_info,"Product_key")
     product_info_dict["product_idx"] = int(product_info["order"])
     product_info_dict["create_date"] = create_date
-    product_info_dict["level1"] = checkDictValue_str(product_info,"Level_1")
-    product_info_dict["level2"] = checkDictValue_str(product_info,"Level_2")
-    product_info_dict["level3"] = checkDictValue_str(product_info,"Level_3")
-    product_info_dict["level4"] = checkDictValue_str(product_info,"Level_4")
-    product_info_dict["level5"] = checkDictValue_str(product_info,"Level_5")
     product_info_dict["product_name"] = checkDictValue_str(product_info,"Name")
     product_info_dict["product_price"] = checkDictValue_int(product_info,"Price")
     product_info_dict["launch_date"] = checkDictValue_str(product_info,"LaunchDate")
@@ -60,7 +55,7 @@ def insert_db(product_info,product_spectable,review_keyword):
     product_info_dict["2star"] = checkDictValue_int(product_info,"2star")
     product_info_dict["1star"] = checkDictValue_int(product_info,"1star")
     # print(product_info_dict)
-    cursor.execute(f"""INSERT INTO `TB_DNW_PRODUCT_INFO` (pcategory,pcode,product_idx,create_date,level1,level2,level3,level4,level5,product_name,product_price,launch_date,brand_name,review_score,review_number,5star,4star,3star,2star,1star) VALUES("{product_info_dict["pcategory"]}","{product_info_dict["pcode"]}",{product_info_dict["product_idx"]},"{product_info_dict["create_date"]}","{product_info_dict["level1"]}","{product_info_dict["level2"]}","{product_info_dict["level3"]}","{product_info_dict["level4"]}","{product_info_dict["level5"]}","{product_info_dict["product_name"]}",{product_info_dict["product_price"]},"{product_info_dict["launch_date"]}","{product_info_dict["brand_name"]}",{product_info_dict["review_score"]},{product_info_dict["review_number"]},{product_info_dict["5star"]},{product_info_dict["4star"]},{product_info_dict["3star"]},{product_info_dict["2star"]},{product_info_dict["1star"]})""")
+    cursor.execute(f"""INSERT INTO `TB_DNW_PRODUCT_INFO` (pcategory,pcode,product_idx,create_date,product_name,product_price,launch_date,brand_name,review_score,review_number,5star,4star,3star,2star,1star) VALUES("{product_info_dict["pcategory"]}","{product_info_dict["pcode"]}",{product_info_dict["product_idx"]},"{product_info_dict["create_date"]}","{product_info_dict["product_name"]}",{product_info_dict["product_price"]},"{product_info_dict["launch_date"]}","{product_info_dict["brand_name"]}",{product_info_dict["review_score"]},{product_info_dict["review_number"]},{product_info_dict["5star"]},{product_info_dict["4star"]},{product_info_dict["3star"]},{product_info_dict["2star"]},{product_info_dict["1star"]})""")
     mydb.commit()
 
     index_1 = 1

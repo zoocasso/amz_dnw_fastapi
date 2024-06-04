@@ -59,6 +59,6 @@ for list_index in category_a_tag_list:
     except:
         pass
     category_title_list.append(category_title_dict)
-    cursor.execute(f"""INSERT INTO `dnw_category` (level1,level2,level3,level4,url,pcategory) VALUES("{category_title_dict["level_1"]}","{category_title_dict["level_2"]}","{category_title_dict["level_3"]}","{category_title_dict["level_4"]}","{category_title_dict["url"]}",{checkDictValue_int(category_title_dict,"pcategory")})""")
+    cursor.execute(f"""INSERT INTO `TB_DNW_CATEGORY` (level1,level2,level3,level4,url,pcategory) VALUES("{category_title_dict["level_1"]}","{category_title_dict["level_2"]}","{category_title_dict["level_3"]}","{category_title_dict["level_4"]}","{category_title_dict["url"]}",{checkDictValue_int(category_title_dict,"pcategory")})""")
     mydb.commit()
 driver.close()

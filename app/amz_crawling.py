@@ -31,16 +31,7 @@ def checkDictValue_int(dict,key):
     else:
         return dict[key]
 
-def insert_db(url,asin,product_order,product_info,product_detail,product_feature,feature_rating,review_keyword,body_content):
-    cursor.execute(f"select * from TB_AMZ_CATEGORY where url like '{url}'")
-    rows = cursor.fetchall()
-    level_list = list()
-    for row in rows:
-        level_list.append(row[1])
-        level_list.append(row[2])
-        level_list.append(row[3])
-        level_list.append(row[4])
-    
+def insert_db(url,asin,product_order,product_info,product_detail,product_feature,feature_rating,review_keyword,body_content):   
     create_date = str(datetime.now()).split(' ')[0].strip()
     
     index_1 = 1
@@ -85,10 +76,10 @@ def insert_db(url,asin,product_order,product_info,product_detail,product_feature
     product_info_dict = dict()
     product_info_dict = product_info
     product_info_dict["product_key"] = asin
-    product_info_dict["product_order"] =product_order
+    product_info_dict["product_order"] = product_order
     product_info_dict["create_date"] = create_date
     # print(product_info_dict)
-    cursor.execute(f"""INSERT INTO `TB_AMZ_PRODUCT_INFO` (url,product_key,product_idx,create_date,level1,level2,level3,level4,product_name,product_price,review_score,review_number,5star,4star,3star,2star,1star) VALUES("{url}","{checkDictValue_str(product_detail,"ASIN")}","{checkDictValue_str(product_info_dict,"product_order")}","{create_date}","{level_list[0]}","{level_list[1]}","{level_list[2]}","{level_list[3]}","{checkDictValue_str(product_info_dict,"Product_name")}",{checkDictValue_int(product_info_dict,"Product_price")},{checkDictValue_int(product_info_dict,"totalRatingStar")},{checkDictValue_int(product_info_dict,"totalReviewCount")},{checkDictValue_int(product_info_dict,"star5")},{checkDictValue_int(product_info_dict,"star4")},{checkDictValue_int(product_info_dict,"star3")},{checkDictValue_int(product_info_dict,"star2")},{checkDictValue_int(product_info_dict,"star1")})""")
+    cursor.execute(f"""INSERT INTO `TB_AMZ_PRODUCT_INFO` (url,product_key,product_idx,create_date,product_name,product_price,review_score,review_number,5star,4star,3star,2star,1star) VALUES("{url}","{checkDictValue_str(product_detail,"ASIN")}","{checkDictValue_str(product_info_dict,"product_order")}","{create_date}","{checkDictValue_str(product_info_dict,"Product_name")}",{checkDictValue_int(product_info_dict,"Product_price")},{checkDictValue_int(product_info_dict,"totalRatingStar")},{checkDictValue_int(product_info_dict,"totalReviewCount")},{checkDictValue_int(product_info_dict,"star5")},{checkDictValue_int(product_info_dict,"star4")},{checkDictValue_int(product_info_dict,"star3")},{checkDictValue_int(product_info_dict,"star2")},{checkDictValue_int(product_info_dict,"star1")})""")
     mydb.commit()
 
     index_4 = 1
